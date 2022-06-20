@@ -8,6 +8,20 @@ import { toast } from "react-toastify";
 const HomePage = () => {
   const emailEditorRef = React.useRef(null);
 
+  const handleOnReady = () => {
+    try {
+      const data = JSON.parse(localStorage.getItem("design"));
+      emailEditorRef.current?.editor.loadDesign(data);
+    } catch (_) {}
+  };
+
+  const saveJSON = () => {
+    emailEditorRef.current?.saveDesign((data) => {
+      localStorage.setItem("design", JSON.stringify(data));
+      toast("Saved");
+    });
+  };
+
   const importJSON = () => {
     const inputElement = document.createElement("input");
     inputElement.type = "file";
@@ -63,6 +77,7 @@ const HomePage = () => {
   return (
     <>
       <Navbar
+        saveJSON={saveJSON}
         importJSON={importJSON}
         exportToJSON={exportToJSON}
         exportToHTML={exportToHTML}
@@ -71,6 +86,7 @@ const HomePage = () => {
       <Box sx={{ mt: "64px" }}>
         <EmailEditor
           ref={emailEditorRef}
+          onReady={handleOnReady}
           editorId="editor"
           style={{ height: "calc(100vh - 64px)" }}
         />

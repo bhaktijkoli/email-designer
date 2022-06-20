@@ -7,11 +7,13 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import SaveIcon from "@mui/icons-material/Save";
 import ImportExportIcon from "@mui/icons-material/ImportExport";
 import SaveAltIcon from "@mui/icons-material/SaveAlt";
 import * as React from "react";
 
 const Navbar = ({
+  saveJSON,
   importJSON,
   exportToJSON,
   exportToHTML,
@@ -34,6 +36,14 @@ const Navbar = ({
           Email Designer
         </Typography>
         <Box>
+          <Button
+            sx={{ mr: 2 }}
+            onClick={saveJSON}
+            variant="contained"
+            startIcon={<SaveIcon />}
+          >
+            Save
+          </Button>
           <Button
             sx={{ mr: 2 }}
             onClick={importJSON}

@@ -4,6 +4,7 @@ import EmailEditor from "react-email-editor";
 import { Box } from "@mui/material";
 import FileSaver from "file-saver";
 import { toast } from "react-toastify";
+import Head from "next/head";
 
 const HomePage = () => {
   const emailEditorRef = React.useRef(null);
@@ -76,6 +77,12 @@ const HomePage = () => {
 
   return (
     <>
+      <Head>
+        <title>Email Designer</title>
+        <meta name="description" content="Free Web tutorials" />
+        <meta name="keywords" content="HTML, CSS, JavaScript" />
+        <meta name="author" content="John Doe" />
+      </Head>
       <Navbar
         saveJSON={saveJSON}
         importJSON={importJSON}
